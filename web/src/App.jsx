@@ -21,10 +21,60 @@ const Header = () => {
   );
 };
 
+const RestaurentList = () => {
+  return (
+    <div className="restaurent_container">
+      <form action="">
+        <input
+          className="i_search"
+          type="search"
+          placeholder="search your fav food"
+        />
+        <button className="btn_search" type="submit">
+          Search
+        </button>
+      </form>
+      <h1 className="restaurent_heading">Top restaurant chains in Jodhpur</h1>
+      <section className="restaurent_items">
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+        <RestaurentCard />
+      </section>
+    </div>
+  );
+};
+
+const RestaurentCard = () => {
+  return (
+    <div className="restaurent_card">
+      <div className="card_image">
+        <img
+          src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/535fc9f9c135f7982317bbb6a64a1ffc"
+          alt=""
+        />
+      </div>
+      <h2 className="res_name">McDonald's</h2>
+      <p className="res_rating">4.4 | 20-25 mins</p>
+      <p className="res_type">American</p>
+      <p className="res_location">Rawaton ka Bass</p>
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <div>
       <Header />
+      <RestaurentList />
     </div>
   );
 };
