@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./App.css";
 
 const Header = () => {
@@ -21,6 +22,41 @@ const Header = () => {
   );
 };
 
+const resObj = {
+  info: {
+    id: "84713",
+    name: "Pizza Hut",
+    cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
+    locality: "Sardarpura",
+    areaName: "Sardarpura",
+    costForTwo: "₹350 for two",
+    cuisines: ["Pizzas"],
+    avgRating: 4.2,
+    parentId: "721",
+    avgRatingString: "4.2",
+    totalRatingsString: "5K+",
+    sla: {
+      deliveryTime: 21,
+      lastMileTravel: 0.9,
+      serviceability: "SERVICEABLE",
+      slaString: "20-25 mins",
+      lastMileTravelString: "0.9 km",
+      iconType: "ICON_TYPE_EMPTY",
+    },
+    availability: {
+      nextCloseTime: "2024-03-09 23:59:00",
+      opened: true,
+    },
+    badges: {},
+    isOpen: true,
+    type: "F",
+    aggregatedDiscountInfoV3: {
+      header: "ITEMS",
+      subHeader: "AT ₹179",
+    },
+  },
+};
+
 const RestaurentList = () => {
   return (
     <div className="restaurent_container">
@@ -36,24 +72,13 @@ const RestaurentList = () => {
       </form>
       <h1 className="restaurent_heading">Top restaurant chains in Jodhpur</h1>
       <section className="restaurent_items">
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
-        <RestaurentCard />
+        <RestaurentCard resData={resObj} />
       </section>
     </div>
   );
 };
 
-const RestaurentCard = () => {
+const RestaurentCard = ({ resData }) => {
   return (
     <div className="restaurent_card">
       <div className="card_image">
@@ -62,10 +87,16 @@ const RestaurentCard = () => {
           alt=""
         />
       </div>
-      <h2 className="res_name">McDonald's</h2>
-      <p className="res_rating">4.4 | 20-25 mins</p>
-      <p className="res_type">American</p>
-      <p className="res_location">Rawaton ka Bass</p>
+      <h2 className="res_name">
+        {resData.info.name} | {resData.info.avgRatingString} &#9733;
+      </h2>
+      <p className="res_rating">
+        {resData.info.isOpen
+          ? "Delivery in 20-25 mins"
+          : "Restaurant is closed right now"}
+      </p>
+      <p className="res_type">{resData.info.cuisines}</p>
+      <p className="res_location">{resData.info.locality}</p>
     </div>
   );
 };
