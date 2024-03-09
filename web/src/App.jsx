@@ -764,27 +764,33 @@ const RestaurentList = () => {
 };
 
 const RestaurentCard = ({ resData }) => {
+  const {
+    cloudinaryImageId,
+    name,
+    avgRatingString,
+    isOpen,
+    cuisines,
+    locality,
+  } = resData.info;
   return (
     <div className="restaurent_card">
       <div className="card_image">
         <img
           src={
             "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-            resData.info.cloudinaryImageId
+            cloudinaryImageId
           }
           alt=""
         />
       </div>
       <h2 className="res_name">
-        {resData.info.name} | {resData.info.avgRatingString} &#9733;
+        {name} | {avgRatingString} &#9733;
       </h2>
       <p className="res_rating">
-        {resData.info.isOpen
-          ? "Delivery in 20-25 mins"
-          : "Restaurant is closed right now"}
+        {isOpen ? "Delivery in 20-25 mins" : "Restaurant is closed right now"}
       </p>
-      <p className="res_type">{resData.info.cuisines.join("--")}</p>
-      <p className="res_location">{resData.info.locality}</p>
+      <p className="res_type">{cuisines.join("--")}</p>
+      <p className="res_location">{locality}</p>
     </div>
   );
 };
