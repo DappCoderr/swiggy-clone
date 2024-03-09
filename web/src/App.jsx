@@ -750,14 +750,9 @@ const RestaurentList = () => {
       </form>
       <h1 className="restaurent_heading">Top restaurant chains in Jodhpur</h1>
       <section className="restaurent_items">
-        {/* {resObj.forEach((ele) => {
-          <RestaurentCard resData={ele} />;
-        })} */}
-        <RestaurentCard resData={resObj[0]} />;
-        <RestaurentCard resData={resObj[1]} />;
-        <RestaurentCard resData={resObj[2]} />;
-        <RestaurentCard resData={resObj[3]} />;
-        <RestaurentCard resData={resObj[4]} />;
+        {resObj.map((res, index) => {
+          return <RestaurentCard key={index} resData={res} />;
+        })}
       </section>
     </div>
   );
