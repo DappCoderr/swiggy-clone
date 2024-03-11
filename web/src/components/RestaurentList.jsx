@@ -4,9 +4,13 @@ import { useState, useEffect } from "react";
 
 const RestaurentList = () => {
   const [listOfRes, setListOfRes] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [filterListOfRes, setFilterListOfRes] = useState([]);
+  console.log("Calling Res List");
 
   // using useEffect hook
   useEffect(() => {
+    console.log("Calling useEffect");
     fetchData();
   }, []);
 
@@ -20,10 +24,37 @@ const RestaurentList = () => {
     setListOfRes(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setFilterListOfRes(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   return (
     <div className="restaurent_container">
+      <div className="search_wrapper">
+        <input
+          className="input_search"
+          type="text"
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+          }}
+          placeholder="what's your fav food?"
+        />
+        <button
+          className="btn_search"
+          onClick={() => {
+            console.log(inputValue);
+            const filter = listOfRes.filter((res) =>
+              res.info.name.toLowerCase().includes(inputValue.toLowerCase())
+            );
+            console.log(filter);
+            setFilterListOfRes(filter);
+          }}
+        >
+          Search
+        </button>
+      </div>
       <button
         className="btn_search"
         type="submit"
@@ -31,14 +62,14 @@ const RestaurentList = () => {
           const filterData = listOfRes.filter(
             (ele) => ele.info.avgRating >= 4.5
           );
-          setListOfRes(filterData);
+          setFilterListOfRes(filterData);
         }}
       >
         Filter Restaurant
       </button>
       <h1 className="restaurent_heading">Top restaurant chains in Jodhpur</h1>
       <section className="restaurent_items">
-        {listOfRes.map((res, index) => {
+        {filterListOfRes.map((res, index) => {
           return <RestaurentCard key={index} resData={res} />;
         })}
       </section>
