@@ -28,8 +28,9 @@ const RestaurentList = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-
-  return (
+  return filterListOfRes.length == 0 ? (
+    "Loading..." // we can shimmer effect for better ui
+  ) : (
     <div className="restaurent_container">
       <div className="search_wrapper">
         <input
