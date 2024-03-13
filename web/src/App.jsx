@@ -7,6 +7,7 @@ import Error from "./components/Error";
 import SignIn from "./components/SignIn";
 import Offer from "./components/Offer";
 import Help from "./components/Help";
+import ResMenu from "./components/ResMenu";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const appRouter = createBrowserRouter([
       { path: "/offer", element: <Offer /> },
       { path: "/help", element: <Help /> },
       { path: "/signIn", element: <SignIn /> },
+      { path: "/restarants/:resId", element: <ResMenu /> },
     ],
     errorElement: <Error />,
   },
