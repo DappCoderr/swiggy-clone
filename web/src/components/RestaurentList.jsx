@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import RestaurentCard from "./RestaurentCard";
 // import resObj from "../utils/mockData";
 import { useState, useEffect } from "react";
@@ -70,8 +71,15 @@ const RestaurentList = () => {
       </button>
       <h1 className="restaurent_heading">Top restaurant chains in Jodhpur</h1>
       <section className="restaurent_items">
-        {filterListOfRes.map((res, index) => {
-          return <RestaurentCard key={index} resData={res} />;
+        {filterListOfRes.map((res) => {
+          return (
+            <>
+              {console.log(res.info.id)}
+              <Link key={res.info.id} to={"/restarants/" + res.info.id}>
+                <RestaurentCard resData={res} />
+              </Link>
+            </>
+          );
         })}
       </section>
     </div>
