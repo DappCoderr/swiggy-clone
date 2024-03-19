@@ -7,7 +7,6 @@ const ResMenu = () => {
   const { resId } = useParams();
 
   useEffect(() => {
-    console.log("UseEffect call Brother");
     fetchData();
   }, []);
 
@@ -18,22 +17,25 @@ const ResMenu = () => {
         "&catalog_qa=undefined&submitAction=ENTER"
     );
     const json = await data.json();
-    console.log(json);
     setResMenu(json.data);
   };
 
   if (resMenu === null) return <div>Loading...</div>;
 
+  // Check if resMenu and its nested properties are defined
+  const { name, cuisines, areaName, avgRating } =
+    resMenu?.cards[0]?.card?.card?.info || {};
+
   return (
     <div className="menu_wrapper">
       <div className="header">
-        <div className="top_le3ft">
-          <h4>{resMenu?.cards[0]?.card?.card?.info?.name}</h4>
-          <p>{resMenu?.cards[0]?.card?.card?.info?.cuisines.join("--")}</p>
-          <p>{resMenu?.cards[0]?.card?.card?.info?.areaName}</p>
+        <div className="top_left">
+          <h4>{name}</h4>
+          <p>{cuisines ? cuisines.join("--") : ""}</p>
+          <p>{areaName}</p>
         </div>
         <div className="top_right">
-          <h3>Rating - {resMenu?.cards[0]?.card?.card?.info?.avgRating}</h3>
+          <h3>Rating - {avgRating}</h3>
         </div>
       </div>
       <div className="restaurant_list">
