@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import RestaurentCard from "./RestaurentCard";
-// import resObj from "../utils/mockData";
 import { useState, useEffect } from "react";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const RestaurentList = () => {
   const [listOfRes, setListOfRes] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filterListOfRes, setFilterListOfRes] = useState([]);
-  console.log("Calling Res List");
+  const onlineStatus = useOnlineStatus();
 
   // using useEffect hook
   useEffect(() => {
-    console.log("Calling useEffect");
+    // console.log("Calling useEffect");
     fetchData();
   }, []);
 
@@ -29,6 +29,10 @@ const RestaurentList = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (onlineStatus == false)
+    return <h1>Your are offline, please check you connection</h1>;
+
   return filterListOfRes.length == 0 ? (
     "Loading..." // we can shimmer effect for better ui
   ) : (
