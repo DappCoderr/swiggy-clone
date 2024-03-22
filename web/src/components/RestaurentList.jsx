@@ -37,7 +37,7 @@ const RestaurentList = () => {
     <div className="w-[80%] m-auto p-[4% 2%]">
       <div className="inline-block">
         <input
-          className="bg-transparent px-1 py-3 font-extrabold text-sm rounded-md"
+          className="bg-transparent px-1 py-1 mr-2 font-extrabold text-sm rounded-md border border-black border-2"
           type="text"
           value={inputValue}
           onChange={(e) => {
@@ -46,7 +46,7 @@ const RestaurentList = () => {
           placeholder="what's your fav food?"
         />
         <button
-          className="bg-transparent px-1 py-3 font-extrabold text-sm rounded-md"
+          className="bg-transparent px-1 py-1 mr-4 font-extrabold text-sm rounded-md border border-black border-2"
           onClick={() => {
             console.log(inputValue);
             const filter = listOfRes.filter((res) =>
@@ -60,7 +60,7 @@ const RestaurentList = () => {
         </button>
       </div>
       <button
-        className="bg-transparent px-1 py-3 font-extrabold text-sm rounded-md"
+        className="bg-transparent px-1 py-1 font-extrabold text-sm rounded-md border border-black border-2"
         type="submit"
         onClick={() => {
           const filterData = listOfRes.filter(
