@@ -11,7 +11,6 @@ const RestaurentList = () => {
 
   // using useEffect hook
   useEffect(() => {
-    // console.log("Calling useEffect");
     fetchData();
   }, []);
 
@@ -21,7 +20,6 @@ const RestaurentList = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.26920&lng=73.00900&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    // Optional Chaining
     setListOfRes(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -36,10 +34,10 @@ const RestaurentList = () => {
   return filterListOfRes.length == 0 ? (
     "Loading..." // we can shimmer effect for better ui
   ) : (
-    <div className="restaurent_container">
-      <div className="search_wrapper">
+    <div className="w-[80%] m-auto p-[4% 2%]">
+      <div className="inline-block">
         <input
-          className="input_search"
+          className="bg-transparent px-1 py-3 font-extrabold text-sm rounded-md"
           type="text"
           value={inputValue}
           onChange={(e) => {
@@ -48,7 +46,7 @@ const RestaurentList = () => {
           placeholder="what's your fav food?"
         />
         <button
-          className="btn_search"
+          className="bg-transparent px-1 py-3 font-extrabold text-sm rounded-md"
           onClick={() => {
             console.log(inputValue);
             const filter = listOfRes.filter((res) =>
@@ -62,7 +60,7 @@ const RestaurentList = () => {
         </button>
       </div>
       <button
-        className="btn_search"
+        className="bg-transparent px-1 py-3 font-extrabold text-sm rounded-md"
         type="submit"
         onClick={() => {
           const filterData = listOfRes.filter(
@@ -73,8 +71,8 @@ const RestaurentList = () => {
       >
         Filter Restaurant
       </button>
-      <h1 className="restaurent_heading">Top restaurant chains in Jodhpur</h1>
-      <section className="restaurent_items">
+      <h1 className="py-5 text-sm">Top restaurant chains in Jodhpur</h1>
+      <section className="flex flex-wrap gap-5 justify-center m-auto">
         {filterListOfRes.map((res) => {
           return (
             <>

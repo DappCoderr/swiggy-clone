@@ -12,18 +12,22 @@ const RestaurentCard = (props) => {
     locality,
   } = resData.info;
   return (
-    <div className="restaurent_card">
+    <div className="flex flex-col w-64 cursor-pointer">
       <div className="card_image">
-        <img src={CDN_URL + cloudinaryImageId} alt="" />
+        <img
+          className="w-screen h-36 rounded-lg object-cover"
+          src={CDN_URL + cloudinaryImageId}
+          alt=""
+        />
       </div>
-      <h2 className="res_name">
+      <h2 className="text-sm">
         {name} | {avgRatingString} &#9733;
       </h2>
-      <p className="res_rating">
+      <p className="font-semibold">
         {isOpen ? "Delivery in 20-25 mins" : "Restaurant is closed right now"}
       </p>
-      <p className="res_type">{cuisines.join("--")}</p>
-      <p className="res_location">{locality}</p>
+      <p className="text-sm">{cuisines.join("--")}</p>
+      <p className="text-sm">{locality}</p>
     </div>
   );
 };
